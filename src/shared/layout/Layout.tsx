@@ -8,10 +8,15 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import {Outlet} from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
-import  MenuItem from "@mui/material/MenuItem";
+import MenuItem from "@mui/material/MenuItem";
+
+interface IMenuItem {
+  label: string;
+  url: string;
+}
 
 const Search = styled("div")(({theme}) => ({
   position: "relative",
@@ -43,7 +48,6 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
   width: "100%",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     [theme.breakpoints.up("sm")]: {
@@ -55,19 +59,71 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
   },
 }));
 
+const Footer = styled("div")(({theme}) => ({
+  backgroundColor: theme.palette.common.black,
+  width: "100%",
+  padding: theme.spacing(1),
+  color: theme.palette.common.white,
+}));
+
+const menuItems: IMenuItem[] = [
+  {
+    label: "Create user profile",
+    url: "create-user-profile",
+  },
+  {
+    label: "Create a service context",
+    url: "create-a-service-context",
+  },
+  {
+    label: "Create an application",
+    url: "create-an-application",
+  },
+  {
+    label: "Create application context",
+    url: "create-application-context",
+  },
+  {
+    label: "Create data source",
+    url: "create-data-source",
+  },
+  {
+    label: "Create data security profile",
+    url: "create-data-security-profile",
+  },
+  {
+    label: "Request data product",
+    url: "request-data-product",
+  },
+];
+
 const Layout: React.FC = () => {
+  const navigate = useNavigate();
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
+
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const toggleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+
+  const handleSelectMenu = (url: string, index: number | null) => {
     setAnchorEl(null);
+    setSelectedIndex(index);
+    navigate(url || "/");
   };
 
   return (
-    <Box sx={{flexGrow: 1}}>
+    <Box
+      sx={{
+        flexGrow: 1,
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+      }}
+    >
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -76,7 +132,7 @@ const Layout: React.FC = () => {
             color="inherit"
             aria-label="open drawer"
             sx={{mr: 2}}
-            onClick={handleClick}
+            onClick={toggleMenu}
           >
             <MenuIcon />
           </IconButton>
@@ -84,18 +140,20 @@ const Layout: React.FC = () => {
             id="basic-menu"
             anchorEl={anchorEl}
             open={open}
-            onClose={handleClose}
+            onClose={() => handleSelectMenu("/", null)}
             MenuListProps={{
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem onClick={handleClose}>Create user profile</MenuItem>
-            <MenuItem onClick={handleClose}>Create a service context</MenuItem>
-            <MenuItem onClick={handleClose}>Create an application</MenuItem>
-            <MenuItem onClick={handleClose}>Create application context</MenuItem>
-            <MenuItem onClick={handleClose}>Create data source</MenuItem>
-            <MenuItem onClick={handleClose}>Create data security profile</MenuItem>
-            <MenuItem onClick={handleClose}>Request data product</MenuItem>
+            {menuItems.map((item: IMenuItem, index: number) => (
+              <MenuItem
+                key={index}
+                onClick={() => handleSelectMenu(item.url, index)}
+                selected={index === selectedIndex}
+              >
+                {item.label}
+              </MenuItem>
+            ))}
           </Menu>
           <Typography
             variant="h6"
@@ -117,9 +175,17 @@ const Layout: React.FC = () => {
         </Toolbar>
       </AppBar>
 
-      <Container sx={{paddingY: 3}}>
-        <Outlet />
-      </Container>
+      <Box sx={{paddingY: 3, height: "100%", overflowY: "auto"}}>
+        <Container>
+          <Outlet />
+        </Container>
+      </Box>
+
+      <Footer>
+        <Typography sx={{width: "100%"}} variant="body2" align="center">
+          © {new Date().getFullYear()} Federated Data Marketplace
+        </Typography>
+      </Footer>
     </Box>
   );
 };

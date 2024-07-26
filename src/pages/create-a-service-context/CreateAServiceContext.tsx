@@ -3,39 +3,34 @@ import Grid from "@mui/material/Unstable_Grid2";
 import {
   Box,
   Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
   TextField,
   Typography,
 } from "@mui/material";
 
-const CreateUserProfile: React.FC = () => {
+const CreateAServiceContext: React.FC = () => {
+
   return (
     <Box>
       <form>
         <Grid container spacing={2}>
           <Grid xs={6} xsOffset={3}>
             <Typography variant="h6" sx={{mb: 2}}>
-              Create user profile
+              Create a service context
             </Typography>
           </Grid>
           <Grid xs={6} xsOffset={3}>
-            <TextField fullWidth label="User Name" required />
+            <TextField fullWidth label="Application context" required />
           </Grid>
           <Grid xs={6} xsOffset={3}>
-            <TextField fullWidth label="Password" type="password" required />
+            <TextField fullWidth label="System name" required />
           </Grid>
           <Grid xs={6} xsOffset={3}>
-            <FormControl fullWidth>
-              <InputLabel id="role-label">Role</InputLabel>
-              <Select labelId="role-label" id="role" label="Role" required>
-                <MenuItem value="admin">Admin</MenuItem>
-                <MenuItem value="user">User</MenuItem>
-              </Select>
-            </FormControl>
+            <TextField fullWidth label="Enviroment" required />
           </Grid>
+          <Grid xs={6} xsOffset={3}>
+            <TextField fullWidth label="Secretes manager" required />
+          </Grid>
+          
           <Grid xs={6} xsOffset={3}>
             <Button
               type="submit"
@@ -55,4 +50,4 @@ const CreateUserProfile: React.FC = () => {
   );
 };
 
-export default CreateUserProfile;
+export default CreateAServiceContext;
