@@ -13,10 +13,12 @@ import CreateApplicationContext from "./pages/create-application-context/CreateA
 import CreateDataSource from "./pages/create-data-source/CreateDataSource";
 import CreateDataSecurityProfile from "./pages/create-data-security-profile/CreateDataSecurityProfile";
 import RequestDataProduct from "./pages/request-data-product/RequestDataProduct";
+import Home from "./pages/home/Home";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
+      <Route index element={<Home />} />
       <Route path="create-user-profile" element={<CreateUserProfile />} />
       <Route path="create-a-service-context" element={<CreateAServiceContext />} />
       <Route path="create-an-application" element={<CreateAnApplication />} />

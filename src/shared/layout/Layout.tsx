@@ -68,6 +68,10 @@ const Footer = styled("div")(({theme}) => ({
 
 const menuItems: IMenuItem[] = [
   {
+    label: "Home",
+    url: "",
+  },
+  {
     label: "Create user profile",
     url: "create-user-profile",
   },
