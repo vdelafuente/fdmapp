@@ -1,5 +1,5 @@
 import * as React from "react";
-/* import { alpha } from "@mui/material/styles";
+import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -18,10 +18,9 @@ import Tooltip from "@mui/material/Tooltip";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
- */
 
 
-/* function createData(
+function createData(
   id,
   name,
   calories,
@@ -228,12 +227,12 @@ function EnhancedTableToolbar(props) {
       )}
     </Toolbar>
   );
-} */
+}
 
-const Home = () => {
+const UsersList = () => {
 
   return <h1>Home</h1>
-  /* const [order, setOrder] = React.useState("asc");
+  const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
@@ -289,7 +288,7 @@ const Home = () => {
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
 
-  Avoid a layout jump when reaching the last page with empty rows.
+
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
@@ -383,7 +382,7 @@ const Home = () => {
         />
       </Paper>
     </Box>
-  ); */
+  ); 
 };
 
-export default Home;
+export default UsersList;

@@ -99,6 +99,10 @@ const menuItems: IMenuItem[] = [
     label: "Request data product",
     url: "request-data-product",
   },
+  {
+    label: "User Profiles",
+    url: "users-list",
+  },
 ];
 
 const Layout = () => {
