@@ -1,39 +1,36 @@
 import * as React from "react";
-import {styled, alpha} from "@mui/material/styles";
+import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import {Outlet, useNavigate} from "react-router-dom";
-import Menu from "@mui/material/Menu";
+import { Outlet, useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
-import MenuItem from "@mui/material/MenuItem";
+import { Button } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 
 interface IMenuItem {
   label: string;
   url: string;
 }
 
-const Search = styled("div")(({theme}) => ({
+const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: alpha(theme.palette.common.black, 0.08),
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: alpha(theme.palette.common.black, 0.09),
   },
   marginLeft: 0,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
+    marginLeft: "auto",
     width: "auto",
   },
 }));
 
-const SearchIconWrapper = styled("div")(({theme}) => ({
+const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: "100%",
   position: "absolute",
@@ -43,7 +40,7 @@ const SearchIconWrapper = styled("div")(({theme}) => ({
   justifyContent: "center",
 }));
 
-const StyledInputBase = styled(InputBase)(({theme}) => ({
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   width: "100%",
   "& .MuiInputBase-input": {
@@ -59,7 +56,7 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
   },
 }));
 
-const Footer = styled("div")(({theme}) => ({
+const Footer = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.common.black,
   width: "100%",
   padding: theme.spacing(1),
@@ -91,7 +88,7 @@ const menuItems: IMenuItem[] = [
     label: "Create data source",
     url: "create-data-source",
   },
-  {
+  /* {
     label: "Create data security profile",
     url: "create-data-security-profile",
   },
@@ -102,24 +99,19 @@ const menuItems: IMenuItem[] = [
   {
     label: "User Profiles",
     url: "users-list",
-  },
+  }, */
 ];
 
 const Layout = () => {
   const navigate = useNavigate();
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
+  const pages = ['Products', 'Pricing', 'Blog'];
 
-  const open = Boolean(anchorEl);
-
-  const toggleMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleSelectMenu = (url: string, index: number | null) => {
-    setAnchorEl(null);
-    setSelectedIndex(index);
+    setAnchorElNav(null);
+    //setSelectedIndex(index);
     navigate(url || "/");
   };
 
@@ -132,65 +124,43 @@ const Layout = () => {
         height: "100vh",
       }}
     >
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{mr: 2}}
-            onClick={toggleMenu}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={() => handleSelectMenu("/", null)}
-            MenuListProps={{
-              "aria-labelledby": "basic-button",
-            }}
-          >
-            {menuItems.map((item: IMenuItem, index: number) => (
-              <MenuItem
-                key={index}
-                onClick={() => handleSelectMenu(item.url, index)}
-                selected={index === selectedIndex}
-              >
-                {item.label}
-              </MenuItem>
-            ))}
-          </Menu>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{flexGrow: 1, display: {xs: "none", sm: "block"}}}
-          >
-            Federated Market Place
-          </Typography>
+      <Box sx={{ px: 3, py: 1, display: "flex" }} >
+        <img src="src/assets/logo.png" style={{ height: 35 }} alt="LOGO" />
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
-              inputProps={{"aria-label": "search"}}
+              inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+      </Box>
+      <AppBar position="static" sx={{ backgroundColor: "#b10b1c" }}>
+        <Toolbar disableGutters sx={{ paddingX: 3 }}>
+          {menuItems.map((item: IMenuItem, index: number) => (
+            <Button
+              key={item.url + index}
+              onClick={() => handleSelectMenu(item.url, index)}
+              sx={{ my: 2, mx: 1, color: 'white', display: 'block'}}
+            >
+              {item.label}
+            </Button>
+          ))}
         </Toolbar>
       </AppBar>
 
-      <Box sx={{paddingY: 3, height: "100%", overflowY: "auto"}}>
+      <Box sx={{ paddingY: 3, height: "100%", overflowY: "auto" }}>
         <Container>
           <Outlet />
         </Container>
       </Box>
 
-      <Footer>
-        <Typography sx={{width: "100%"}} variant="body2" align="center">
+      <Footer sx={{
+        boxSizing: "border-box",
+        paddingX: 0
+      }}>
+        <Typography variant="body2" align="center">
           © {new Date().getFullYear()} Federated Data Marketplace
         </Typography>
       </Footer>

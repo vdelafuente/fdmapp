@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography, Unstable_Grid2 as Grid } from "@mui/material";
 
 const CreateUserProfile = () => {
-  const [role, setRole] = React.useState("admin");
+  const [role, setRole] = React.useState("owner");
 
   return (
     <Box>
@@ -23,8 +23,9 @@ const CreateUserProfile = () => {
             <FormControl fullWidth>
               <InputLabel id="role-label">Role</InputLabel>
               <Select labelId="role-label" id="role" label="Role" value={role} required>
-                <MenuItem value="admin">Admin</MenuItem>
-                <MenuItem value="user">User</MenuItem>
+                <MenuItem value="owner">Data Owner</MenuItem>     
+                <MenuItem value="steward">Data Steward</MenuItem>
+                <MenuItem value="consumer">Data Consumer</MenuItem>
               </Select>
             </FormControl>
           </Grid>
