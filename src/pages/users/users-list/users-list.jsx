@@ -12,6 +12,7 @@ import {
   Typography,
   Unstable_Grid2 as Grid,
 } from "@mui/material";
+import CreateDataSource from "../../create-data-source/CreateDataSource";
 
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
@@ -83,7 +84,7 @@ export default function UsersList() {
           sx={{ mr: 2 }}
           onClick={handleClickOpen}
         >
-          Request data product
+          Create data source
         </MyButton>
 
         <Dialog
@@ -101,33 +102,10 @@ export default function UsersList() {
             },
           }}
         >
-          <DialogTitle mb={3}>Request data product</DialogTitle>
           <DialogContent>
-            <form>
-              <Grid container spacing={2}>
-                <Grid xs={6} xsOffset={3}>
-                  <TextField fullWidth label="Domain name" required />
-                </Grid>
-                <Grid xs={6} xsOffset={3}>
-                  <TextField fullWidth label="Sub domain name" required />
-                </Grid>
-                <Grid xs={6} xsOffset={3}>
-                  <TextField fullWidth label="Product" required />
-                </Grid>
-                <Grid xs={6} xsOffset={3}>
-                  <TextField fullWidth label="Desc of request" required />
-                </Grid>
-              </Grid>
-            </form>
+            <CreateDataSource close={handleClose} />
           </DialogContent>
-          <DialogActions>
-            <MyButton type="button" variant="contained" color="primary" onClick={handleClose}>
-              Cancel
-            </MyButton>
-            <MyButton variant="contained" color="primary" sx={{ mr: 2 }} onClick={handleClose}>
-              Submit
-            </MyButton>
-          </DialogActions>
+          
         </Dialog>
       </Box>
 

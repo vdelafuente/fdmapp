@@ -1,5 +1,11 @@
 import React from "react";
-import {Box, Button, TextField, Typography, Unstable_Grid2 as Grid} from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  Unstable_Grid2 as Grid,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const MyButton = styled(Button)(({ theme }) => ({
@@ -9,13 +15,23 @@ const MyButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const CreateDataSource = () => {
+const CreateDataSource = (props) => {
+  const { close } = props;
+
+  const onSubmit = () => {
+    close();
+  };
+
+  const onCancel = () => {
+    close();
+  };
+
   return (
     <Box>
-      <form>
+      <form onSubmit={onSubmit}>
         <Grid container spacing={2}>
           <Grid xs={6} xsOffset={3}>
-            <Typography variant="h6" sx={{mb: 2}}>
+            <Typography variant="h6" sx={{ mb: 2 }}>
               Create data source
             </Typography>
           </Grid>
@@ -45,11 +61,16 @@ const CreateDataSource = () => {
               type="submit"
               variant="contained"
               color="primary"
-              sx={{mr: 2}}
+              sx={{ mr: 2 }}
             >
               Submit
             </MyButton>
-            <MyButton type="button" variant="contained" color="primary">
+            <MyButton
+              type="button"
+              variant="contained"
+              color="primary"
+              onClick={onCancel}
+            >
               Cancel
             </MyButton>
           </Grid>

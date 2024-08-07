@@ -84,18 +84,18 @@ const menuItems: IMenuItem[] = [
     label: "Application context",
     url: "create-application-context",
   },
-  {
+  /* {
     label: "Data source",
     url: "create-data-source",
-  },
+  }, */
   {
     label: "Data security profile",
     url: "create-data-security-profile",
   },
-  /* {
+  {
     label: "Request data product",
     url: "request-data-product",
-  }, */
+  },
   {
     label: "User Profiles",
     url: "users-list",
