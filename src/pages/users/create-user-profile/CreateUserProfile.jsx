@@ -27,8 +27,11 @@ const MyButton = styled(Button)(({ theme }) => ({
 
 const CreateUserProfile = () => {
   const [alert, setAlert] = React.useState(false);
-  const [role, setRole] = React.useState("owner");
   const [roles, setRoles] = React.useState([]);
+
+  const [name, setName] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [role, setRole] = React.useState("owner");
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -38,6 +41,20 @@ const CreateUserProfile = () => {
       setAlert(false);
       clearTimeout(timeout);
     }, 5000);
+
+    axios
+      .post("http://localhost:3000/users", { name, password, role })
+      .finally(() => {
+        setName("");
+        setPassword("");
+        setRole("owner");
+      });
+  };
+
+  const onCancel = () => {
+    setName("");
+    setPassword("");
+    setRole("owner");
   };
 
   React.useEffect(() => {
@@ -48,7 +65,7 @@ const CreateUserProfile = () => {
         { value: "consumer", label: "Data Consumer" },
       ];
       setRoles(rolesAux);
-    })
+    });
   }, []);
 
   return (
@@ -82,7 +99,14 @@ const CreateUserProfile = () => {
             </Typography>
           </Grid>
           <Grid xs={6} xsOffset={3}>
-            <TextField fullWidth name="name" label="User Name" required />
+            <TextField
+              fullWidth
+              name="name"
+              label="User Name"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </Grid>
           <Grid xs={6} xsOffset={3}>
             <TextField
@@ -91,6 +115,8 @@ const CreateUserProfile = () => {
               label="Password"
               type="password"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </Grid>
           <Grid xs={6} xsOffset={3}>
@@ -101,10 +127,15 @@ const CreateUserProfile = () => {
                 name="role"
                 id="role"
                 label="Role"
-                value={role}
                 required
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
               >
-                {roles.map((r) => <MenuItem key={r.value} value={r.value}>{r.label}</MenuItem>)}
+                {roles.map((r) => (
+                  <MenuItem key={r.value} value={r.value}>
+                    {r.label}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>
@@ -117,7 +148,12 @@ const CreateUserProfile = () => {
             >
               Submit
             </MyButton>
-            <MyButton type="button" variant="contained" color="primary">
+            <MyButton
+              type="button"
+              variant="contained"
+              color="primary"
+              onClick={onCancel}
+            >
               Cancel
             </MyButton>
           </Grid>
