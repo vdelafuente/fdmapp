@@ -92,10 +92,10 @@ const menuItems: IMenuItem[] = [
     label: "Data security profile",
     url: "create-data-security-profile",
   },
-  {
+  /* {
     label: "Request data product",
     url: "request-data-product",
-  },
+  }, */
   {
     label: "User Profiles",
     url: "users-list",
