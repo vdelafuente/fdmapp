@@ -8,9 +8,9 @@ import {
   Button,
 } from "@mui/material";
 import * as React from "react";
-import { createTheme, styled } from '@mui/material/styles';
+import { styled } from "@mui/material/styles";
 
-const CardButton = styled(Button)(({theme}) => ({
+const CardButton = styled(Button)(({ theme }) => ({
   color: "#b10b1c",
 }));
 
@@ -18,9 +18,7 @@ const Home = () => {
   return (
     <Box>
       <Typography variant="h6" textAlign="center" mb={10}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis at
-        quibusdam nemo facilis nisi magnam dolorum laboriosam ab omnis quam,
-        cupiditate corrupti maxime in?
+        Federated Data Marketplace
       </Typography>
 
       <Grid container spacing={2}>
@@ -28,7 +26,7 @@ const Home = () => {
           <Card variant="outlined">
             <CardContent>
               <Typography variant="h5" component="div" mb={3}>
-                Lorem ipsum dolor sit amet
+              Federated Data Marketplace
               </Typography>
               <Typography variant="body2">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
@@ -44,7 +42,7 @@ const Home = () => {
           <Card variant="outlined">
             <CardContent>
               <Typography variant="h5" component="div" mb={3}>
-                Lorem ipsum dolor sit amet
+                Inbox (Approval / Requests)
               </Typography>
               <Typography variant="body2">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
@@ -60,7 +58,7 @@ const Home = () => {
           <Card variant="outlined">
             <CardContent>
               <Typography variant="h5" component="div" mb={3}>
-                Lorem ipsum dolor sit amet
+                Favorites
               </Typography>
               <Typography variant="body2">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est

@@ -6,15 +6,22 @@ import {
   Typography,
   Unstable_Grid2 as Grid,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 const CreateAServiceContext = () => {
+  const MyButton = styled(Button)(({ theme }) => ({
+    backgroundColor: "#b10b1c",
+    "&:hover": {
+      backgroundColor: "#b10b1cb3",
+    },
+  }));
 
   return (
     <Box>
       <form>
         <Grid container spacing={2}>
           <Grid xs={6} xsOffset={3}>
-            <Typography variant="h6" sx={{mb: 2}}>
+            <Typography variant="h6" sx={{ mb: 2 }}>
               Create a service context
             </Typography>
           </Grid>
@@ -30,19 +37,19 @@ const CreateAServiceContext = () => {
           <Grid xs={6} xsOffset={3}>
             <TextField fullWidth label="Secretes manager" required />
           </Grid>
-          
+
           <Grid xs={6} xsOffset={3}>
-            <Button
+            <MyButton
               type="submit"
               variant="contained"
               color="primary"
-              sx={{mr: 2}}
+              sx={{ mr: 2 }}
             >
               Submit
-            </Button>
-            <Button type="button" variant="contained" color="primary">
+            </MyButton>
+            <MyButton type="button" variant="contained" color="primary">
               Cancel
-            </Button>
+            </MyButton>
           </Grid>
         </Grid>
       </form>

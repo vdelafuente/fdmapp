@@ -69,27 +69,27 @@ const menuItems: IMenuItem[] = [
     url: "",
   },
   {
-    label: "Create user profile",
+    label: "User profile",
     url: "create-user-profile",
   },
   {
-    label: "Create a service context",
+    label: "Service context",
     url: "create-a-service-context",
   },
   {
-    label: "Create an application",
+    label: "Application",
     url: "create-an-application",
   },
   {
-    label: "Create application context",
+    label: "Application context",
     url: "create-application-context",
   },
   {
-    label: "Create data source",
+    label: "Data source",
     url: "create-data-source",
   },
-  /* {
-    label: "Create data security profile",
+  {
+    label: "Data security profile",
     url: "create-data-security-profile",
   },
   {
@@ -99,7 +99,7 @@ const menuItems: IMenuItem[] = [
   {
     label: "User Profiles",
     url: "users-list",
-  }, */
+  },
 ];
 
 const Layout = () => {

@@ -1,5 +1,13 @@
 import React from "react";
 import {Box, Button, TextField, Typography, Unstable_Grid2 as Grid} from "@mui/material";
+import { styled } from "@mui/material/styles";
+
+const MyButton = styled(Button)(({ theme }) => ({
+  backgroundColor: "#b10b1c",
+  "&:hover": {
+    backgroundColor: "#b10b1cb3",
+  },
+}));
 
 const CreateApplicationContext = () => {
   return (
@@ -24,17 +32,17 @@ const CreateApplicationContext = () => {
             <TextField fullWidth label="Billing manager" required />
           </Grid>
           <Grid xs={6} xsOffset={3}>
-            <Button
+            <MyButton
               type="submit"
               variant="contained"
               color="primary"
               sx={{mr: 2}}
             >
               Submit
-            </Button>
-            <Button type="button" variant="contained" color="primary">
+            </MyButton>
+            <MyButton type="button" variant="contained" color="primary">
               Cancel
-            </Button>
+            </MyButton>
           </Grid>
         </Grid>
       </form>
