@@ -14,7 +14,6 @@ import {
   Collapse,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 
@@ -28,10 +27,11 @@ const MyButton = styled(Button)(({ theme }) => ({
 const CreateUserProfile = () => {
   const [alert, setAlert] = React.useState(false);
   const [roles, setRoles] = React.useState([]);
-
-  const [name, setName] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [role, setRole] = React.useState("owner");
+  const [form, setForm] = React.useState({
+    name: "",
+    password: "",
+    role: "owner",
+  });
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -45,16 +45,20 @@ const CreateUserProfile = () => {
     axios
       .post("http://localhost:3000/users", { name, password, role })
       .finally(() => {
-        setName("");
-        setPassword("");
-        setRole("owner");
+        setForm({
+          name: "",
+          password: "",
+          role: "owner",
+        });
       });
   };
 
   const onCancel = () => {
-    setName("");
-    setPassword("");
-    setRole("owner");
+    setForm({
+      name: "",
+      password: "",
+      role: "owner",
+    });
   };
 
   React.useEffect(() => {
@@ -104,8 +108,8 @@ const CreateUserProfile = () => {
               name="name"
               label="User Name"
               required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
             />
           </Grid>
           <Grid xs={6} xsOffset={3}>
@@ -115,8 +119,8 @@ const CreateUserProfile = () => {
               label="Password"
               type="password"
               required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
           </Grid>
           <Grid xs={6} xsOffset={3}>
@@ -128,8 +132,8 @@ const CreateUserProfile = () => {
                 id="role"
                 label="Role"
                 required
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
+                value={form.role}
+                onChange={(e) => setForm({ ...form, role: e.target.value })}
               >
                 {roles.map((r) => (
                   <MenuItem key={r.value} value={r.value}>
