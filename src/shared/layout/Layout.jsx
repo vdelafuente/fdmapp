@@ -212,7 +212,7 @@ const Layout = (props) => {
         </Box>
       </AppBar>
 
-      <Toaster position="bottom-right" expand={true} richColors />
+      <Toaster position="bottom-center" expand={true} richColors />
 
       <Box sx={{ paddingY: 3, height: "100%", overflowY: "auto" }}>
         <Container>{auth ? <Outlet /> : <Login />}</Container>

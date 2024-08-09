@@ -17,42 +17,66 @@ const items = [
   {
     id: 3,
     title: "Business Object",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
+    description1: "Domaine name:",
+    description2: "Subdomain name:",
+    description3: "Product:",
+    description4: "Desc of request:",
   },
   {
     id: 4,
     title: "Business Object",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
+    description1: "Domaine name:",
+    description2: "Subdomain name:",
+    description3: "Product:",
+    description4: "Desc of request:",
   },
   {
     id: 5,
     title: "Business Object",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
+    description1: "Domaine name:",
+    description2: "Subdomain name:",
+    description3: "Product:",
+    description4: "Desc of request:",
   },
   {
     id: 6,
     title: "Business Object",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
+    description1: "Domaine name:",
+    description2: "Subdomain name:",
+    description3: "Product:",
+    description4: "Desc of request:",
   },
   {
     id: 7,
     title: "Business Object",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
+    description1: "Domaine name:",
+    description2: "Subdomain name:",
+    description3: "Product:",
+    description4: "Desc of request:",
   },
   {
     id: 8,
     title: "Business Object",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
+    description1: "Domaine name:",
+    description2: "Subdomain name:",
+    description3: "Product:",
+    description4: "Desc of request:",
   },
   {
     id: 9,
     title: "Business Object",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
+    description1: "Domaine name:",
+    description2: "Subdomain name:",
+    description3: "Product:",
+    description4: "Desc of request:",
   },
   {
     id: 10,
     title: "Business Object",
-    description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
+    description1: "Domaine name:",
+    description2: "Subdomain name:",
+    description3: "Product:",
+    description4: "Desc of request:",
   },
 ];
 
@@ -76,7 +100,7 @@ export default function BusinessObjects() {
           sx={{ mr: 2 }}
           onClick={handleClickOpen}
         >
-          Create data product
+          Request data product
         </PrimarySolidButton>
 
         <Dialog
@@ -109,7 +133,10 @@ export default function BusinessObjects() {
                   <Typography variant="h5" component="div" mb={3}>
                     {item.title} {index + 1}
                   </Typography>
-                  <Typography variant="body2">{item.description}</Typography>
+                  <Typography variant="body2">{item.description1}</Typography>
+                  <Typography variant="body2">{item.description2}</Typography>
+                  <Typography variant="body2">{item.description3}</Typography>
+                  <Typography variant="body2">{item.description4}</Typography>
                 </CardContent>
                 <CardActions>
                   <PrimaryTextButton size="small">See More</PrimaryTextButton>

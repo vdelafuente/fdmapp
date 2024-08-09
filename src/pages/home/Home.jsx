@@ -26,11 +26,19 @@ const Home = () => {
           <Card variant="outlined">
             <CardContent>
               <Typography variant="h5" component="div" mb={3}>
-              Federated Data Marketplace
+                Announcements
               </Typography>
               <Typography variant="body2">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
-                molestiae voluptatum unde neque, recusandae
+                molestiae voluptatum unde neque, recusandae <a href="#">click here</a>
+              </Typography><br />
+              <Typography variant="body2">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+                molestiae voluptatum unde neque, recusandae <a href="#">click here</a>
+              </Typography><br />
+              <Typography variant="body2">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+                molestiae voluptatum unde neque, recusandae <a href="#">click here</a>
               </Typography>
             </CardContent>
             <CardActions>
@@ -46,7 +54,15 @@ const Home = () => {
               </Typography>
               <Typography variant="body2">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
-                molestiae voluptatum unde neque, recusandae
+                molestiae voluptatum unde neque, recusandae <a href="#">click here</a>
+              </Typography><br />
+              <Typography variant="body2">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+                molestiae voluptatum unde neque, recusandae <a href="#">click here</a>
+              </Typography><br />
+              <Typography variant="body2">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+                molestiae voluptatum unde neque, recusandae <a href="#">click here</a>
               </Typography>
             </CardContent>
             <CardActions>
@@ -62,7 +78,15 @@ const Home = () => {
               </Typography>
               <Typography variant="body2">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
-                molestiae voluptatum unde neque, recusandae
+                molestiae voluptatum unde neque, recusandae <a href="#">click here</a>
+              </Typography><br />
+              <Typography variant="body2">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+                molestiae voluptatum unde neque, recusandae <a href="#">click here</a>
+              </Typography><br />
+              <Typography variant="body2">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est
+                molestiae voluptatum unde neque, recusandae <a href="#">click here</a>
               </Typography>
             </CardContent>
             <CardActions>
