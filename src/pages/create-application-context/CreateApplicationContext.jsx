@@ -4,10 +4,20 @@ import {
   TextField,
   Typography,
   Unstable_Grid2 as Grid,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import { useFormik } from "formik";
 import PrimarySolidButton from "../../common/primary-solid-button/PrimarySolidButton";
 import PrimaryOutlineButton from "../../common/primary-outline-button/PrimaryOutlineButton";
+
+const applications = [
+  { value: "app1", label: "App 1" },
+  { value: "app2", label: "App 2" },
+  { value: "app3", label: "App 3" },
+];
 import { toast } from "sonner";
 
 const CreateApplicationContext = () => {
@@ -41,14 +51,24 @@ const CreateApplicationContext = () => {
             </Typography>
           </Grid>
           <Grid xs={6} xsOffset={3}>
-            <TextField
-              fullWidth
-              label="Application"
-              required
-              name="application"
-              value={formik.values.application}
-              onChange={formik.handleChange}
-            />
+            <FormControl fullWidth>
+              <InputLabel id="application-label">Application</InputLabel>
+              <Select
+                labelId="application-label"
+                id="application-label"
+                label="Application"
+                required
+                name="application"
+                value={formik.values.application}
+                onChange={formik.handleChange}
+              >
+                {applications.map((app) => (
+                  <MenuItem key={app.value} value={app.value}>
+                    {app.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Grid>
           <Grid xs={6} xsOffset={3}>
             <TextField

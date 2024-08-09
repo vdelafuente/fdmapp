@@ -16,42 +16,42 @@ import PrimaryTextButton from "../../common/primary-text-button/PrimaryTextButto
 const items = [
   {
     id: 3,
-    title: "Alice Smith",
+    title: "Business Object",
     description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
   },
   {
     id: 4,
-    title: "Bob Johnson",
+    title: "Business Object",
     description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
   },
   {
     id: 5,
-    title: "Emily Davis",
+    title: "Business Object",
     description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
   },
   {
     id: 6,
-    title: "Michael Wilson",
+    title: "Business Object",
     description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
   },
   {
     id: 7,
-    title: "Olivia Martinez",
+    title: "Business Object",
     description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
   },
   {
     id: 8,
-    title: "William Anderson",
+    title: "Business Object",
     description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
   },
   {
     id: 9,
-    title: "Sophia Taylor",
+    title: "Business Object",
     description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
   },
   {
     id: 10,
-    title: "James Brown",
+    title: "Business Object",
     description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
   },
 ];
@@ -76,7 +76,7 @@ export default function BusinessObjects() {
           sx={{ mr: 2 }}
           onClick={handleClickOpen}
         >
-          Create
+          Create data product
         </PrimarySolidButton>
 
         <Dialog
@@ -102,12 +102,12 @@ export default function BusinessObjects() {
 
       <Box sx={{ width: "100%" }}>
         <Grid container spacing={2}>
-          {items.map((item) => (
+          {items.map((item, index) => (
             <Grid key={item.id} xs={4}>
               <Card variant="outlined">
                 <CardContent>
                   <Typography variant="h5" component="div" mb={3}>
-                    {item.title}
+                    {item.title} {index + 1}
                   </Typography>
                   <Typography variant="body2">{item.description}</Typography>
                 </CardContent>

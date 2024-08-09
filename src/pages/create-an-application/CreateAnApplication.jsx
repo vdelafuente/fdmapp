@@ -66,6 +66,7 @@ const CreateAnApplication = () => {
             <TextField
               fullWidth
               label="Application owner"
+              type="email"
               required
               name="applicationOwner"
               value={formik.values.applicationOwner}

@@ -97,7 +97,7 @@ const Layout = (props) => {
       protected: true,
     },
     {
-      label: "Bissnes Objects",
+      label: "Business Objects",
       url: "business-objects",
       protected: true,
     },
@@ -106,7 +106,6 @@ const Layout = (props) => {
       url: "create-data-source",
       protected: true,
     },
-
     {
       label: "Data security profile",
       url: "create-data-security-profile",
@@ -213,7 +212,7 @@ const Layout = (props) => {
         </Box>
       </AppBar>
 
-      <Toaster position="top-right" expand={true} richColors />
+      <Toaster position="bottom-right" expand={true} richColors />
 
       <Box sx={{ paddingY: 3, height: "100%", overflowY: "auto" }}>
         <Container>{auth ? <Outlet /> : <Login />}</Container>
