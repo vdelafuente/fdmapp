@@ -10,25 +10,29 @@ import PrimarySolidButton from "../../common/primary-solid-button/PrimarySolidBu
 import PrimaryOutlineButton from "../../common/primary-outline-button/PrimaryOutlineButton";
 import { toast } from "sonner";
 
-const CreateApplicationContext = () => {
+const RequestDataProduct = (props) => {
+  const { close } = props;
+
   const formik = useFormik({
     initialValues: {
-      application: "",
-      profileName: "",
-      costCenter: "",
-      billingManager: "",
+      domainName: "",
+      subDomainName: "",
+      product: "",
+      descOfRequest: "",
     },
     onSubmit: (values) => {
+      close();
       toast.success("Record created successfully!");
       formik.resetForm();
       axios
-        .post("http://localhost:3000/application-contexts", values)
+        .post("http://localhost:3000/data-products", values)
         .finally(() => {});
     },
   });
 
   const onCancel = () => {
     formik.resetForm();
+    close();
   };
 
   return (
@@ -37,47 +41,46 @@ const CreateApplicationContext = () => {
         <Grid container spacing={2}>
           <Grid xs={6} xsOffset={3}>
             <Typography variant="h6" sx={{ mb: 2 }}>
-              Create application context
+              Request data product
             </Typography>
           </Grid>
           <Grid xs={6} xsOffset={3}>
             <TextField
               fullWidth
-              label="Application"
+              label="Domain name"
               required
-              name="application"
-              value={formik.values.application}
+              name="domainName"
+              value={formik.values.domainName}
               onChange={formik.handleChange}
             />
           </Grid>
           <Grid xs={6} xsOffset={3}>
             <TextField
               fullWidth
-              label="Profile name"
+              label="Sub domain name"
               required
-              name="profileName"
-              value={formik.values.profileName}
+              name="subDomainName"
+              value={formik.values.subDomainName}
               onChange={formik.handleChange}
             />
           </Grid>
           <Grid xs={6} xsOffset={3}>
             <TextField
               fullWidth
-              label="Cost center"
+              label="Product"
               required
-              name="costCenter"
-              value={formik.values.costCenter}
+              name="product"
+              value={formik.values.product}
               onChange={formik.handleChange}
             />
           </Grid>
           <Grid xs={6} xsOffset={3}>
             <TextField
               fullWidth
-              type="email"
-              label="Billing manager"
+              label="Desc of request"
               required
-              name="billingManager"
-              value={formik.values.billingManager}
+              name="descOfRequest"
+              value={formik.values.descOfRequest}
               onChange={formik.handleChange}
             />
           </Grid>
@@ -105,4 +108,4 @@ const CreateApplicationContext = () => {
   );
 };
 
-export default CreateApplicationContext;
+export default RequestDataProduct;

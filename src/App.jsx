@@ -12,16 +12,16 @@ import CreateAnApplication from "./pages/create-an-application/CreateAnApplicati
 import CreateApplicationContext from "./pages/create-application-context/CreateApplicationContext";
 import CreateDataSource from "./pages/create-data-source/CreateDataSource";
 import CreateDataSecurityProfile from "./pages/create-data-security-profile/CreateDataSecurityProfile";
-import RequestDataProduct from "./pages/request-data-product/RequestDataProduct";
+import RequestDataProduct from "./components/request-data-product/RequestDataProduct";
 import Layout from "./shared/layout/Layout";
 import Home from "./pages/home/Home";
+import BusinessObjects from "./pages/business-objects/BusinessObjects";
 import { AuthContext } from "./context/AuthContext";
-import UsersList from "./pages/users-list/users-list";
 
 const router = (auth) =>
   createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Layout auth={auth} />}>
         <Route index element={<Home />} />
         <Route path="create-user-profile" element={<CreateUserProfile />} />
         <Route
@@ -39,15 +39,20 @@ const router = (auth) =>
           element={<CreateDataSecurityProfile />}
         />
         <Route path="request-data-product" element={<RequestDataProduct />} />
-        <Route path="users-list" element={<UsersList />} />
+        <Route path="business-objects" element={<BusinessObjects />} />
       </Route>
     )
   );
 
 function App() {
-  const { auth } = React.useContext(AuthContext);
+  const _auth = JSON.parse(sessionStorage.getItem("auth"));
+  const { setAuth } = React.useContext(AuthContext);
 
-  return <RouterProvider router={router(auth)} />;
+  React.useEffect(() => {
+    setAuth(_auth || null);
+  }, []);
+
+  return <RouterProvider router={router(_auth)} />;
 }
 
 export default App;

@@ -12,6 +12,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { AccountCircle } from "@mui/icons-material";
 import { AuthContext } from "../../context/AuthContext";
 import Login from "../../pages/login/Login";
+import { Toaster } from "sonner";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -61,9 +62,13 @@ const Footer = styled("div")(({ theme }) => ({
   color: theme.palette.common.white,
 }));
 
-const Layout = () => {
+const Layout = (props) => {
+  const { auth: localAuth } = props;
+
   const navigate = useNavigate();
-  const { auth, setAuth } = React.useContext(AuthContext);
+  const { auth: globalAuth, setAuth } = React.useContext(AuthContext);
+
+  const auth = globalAuth || localAuth;
 
   const menu = [
     {
@@ -77,11 +82,6 @@ const Layout = () => {
       protected: true,
     },
     {
-      label: "Service context",
-      url: "create-a-service-context",
-      protected: true,
-    },
-    {
       label: "Application",
       url: "create-an-application",
       protected: true,
@@ -92,18 +92,24 @@ const Layout = () => {
       protected: true,
     },
     {
+      label: "Service context",
+      url: "create-a-service-context",
+      protected: true,
+    },
+    {
+      label: "Bissnes Objects",
+      url: "business-objects",
+      protected: true,
+    },
+    {
+      label: "Data source",
+      url: "create-data-source",
+      protected: true,
+    },
+
+    {
       label: "Data security profile",
       url: "create-data-security-profile",
-      protected: true,
-    },
-    {
-      label: "Request data product",
-      url: "request-data-product",
-      protected: true,
-    },
-    {
-      label: "User Profiles",
-      url: "users-list",
       protected: true,
     },
   ].filter((item) => item.protected && auth);
@@ -122,7 +128,8 @@ const Layout = () => {
     setAnchorEl(null);
   };
 
-  const handleMenuProfile = () => {
+  const handleSignOut = () => {
+    sessionStorage.removeItem("auth");
     setAuth(null);
     setAnchorEl(null);
   };
@@ -136,14 +143,16 @@ const Layout = () => {
         height: "100vh",
       }}
     >
-      <Box sx={{ px: 3, display: "flex", alignItems: "center", minHeight: "60px" }}>
+      <Box
+        sx={{ px: 3, display: "flex", alignItems: "center", minHeight: "60px" }}
+      >
         <img src="src/assets/logo.png" style={{ height: 35 }} alt="LOGO" />
 
         {auth && (
           <Box sx={{ ml: "auto" }}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <Typography variant="subtitle2" sx={{ mr: 1 }}>
-                {auth?.firstName} {auth?.lastName}
+                {auth?.displayName}
               </Typography>
               <IconButton
                 size="large"
@@ -166,7 +175,7 @@ const Layout = () => {
               open={Boolean(anchorEl)}
               onClose={handleCloseProfile}
             >
-              <MenuItem sx={{ minWidth: 150 }} onClick={handleMenuProfile}>
+              <MenuItem sx={{ minWidth: 150 }} onClick={handleSignOut}>
                 Sing Out
               </MenuItem>
             </Menu>
@@ -203,6 +212,8 @@ const Layout = () => {
           )}
         </Box>
       </AppBar>
+
+      <Toaster position="top-right" expand={true} richColors />
 
       <Box sx={{ paddingY: 3, height: "100%", overflowY: "auto" }}>
         <Container>{auth ? <Outlet /> : <Login />}</Container>

@@ -1,48 +1,39 @@
 import {
   Box,
-  Button,
   Unstable_Grid2 as Grid,
   TextField,
   Typography,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-
-const MyButton = styled(Button)(({ theme }) => ({
-  backgroundColor: "#b10b1c",
-  "&:hover": {
-    backgroundColor: "#b10b1cb3",
-  },
-}));
+import { useFormik } from "formik";
+import PrimarySolidButton from "../../common/primary-solid-button/PrimarySolidButton";
 
 const Login = () => {
-  const navigate = useNavigate();
   const { setAuth } = React.useContext(AuthContext);
 
-  const [form, setForm] = React.useState({
-    username: "",
-    password: "",
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    onSubmit: (values) => {
+      //axios.post("http://localhost:3001/login", values).finally(() => {
+      formik.resetForm();
+      const _auth = {
+        displayName: "John Doe",
+        email: values.username,
+        role: "owner",
+      };
+      sessionStorage.setItem("auth", JSON.stringify(_auth));
+      setAuth(_auth);
+      //});
+    },
   });
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    /* axios.post("http://localhost:3001/login", form).finally(() => { */
-    setForm({ username: "", password: "" });
-    const _auth = {
-      firstName: "John",
-      lastName: "Doe",
-      email: form.username,
-    };
-    setAuth(_auth);
-    navigate("/");
-    //});
-  };
 
   return (
     <Box>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={2}>
           <Grid xs={6} xsOffset={3}>
             <Typography variant="h6" sx={{ mb: 2 }}>
@@ -55,8 +46,9 @@ const Login = () => {
               type="email"
               label="Username"
               required
-              value={form.username}
-              onChange={(e) => setForm({ ...form, username: e.target.value })}
+              name="username"
+              value={formik.values.username}
+              onChange={formik.handleChange}
             />
           </Grid>
           <Grid xs={6} xsOffset={3}>
@@ -65,19 +57,20 @@ const Login = () => {
               type="password"
               label="Password"
               required
-              value={form.password}
-              onChange={(e) => setForm({ ...form, password: e.target.value })}
+              name="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
             />
           </Grid>
           <Grid xs={6} xsOffset={3}>
-            <MyButton
+            <PrimarySolidButton
               type="submit"
               variant="contained"
               color="primary"
               sx={{ mr: 2 }}
             >
               Enter
-            </MyButton>
+            </PrimarySolidButton>
           </Grid>
         </Grid>
       </form>

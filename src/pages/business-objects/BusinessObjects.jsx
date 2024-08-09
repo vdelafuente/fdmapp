@@ -1,8 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
 import {
-  Button,
   Card,
   CardActions,
   CardContent,
@@ -11,7 +9,9 @@ import {
   Unstable_Grid2 as Grid,
   Typography,
 } from "@mui/material";
-import CreateDataSource from "../create-data-source/CreateDataSource";
+import RequestDataProduct from "../../components/request-data-product/RequestDataProduct";
+import PrimarySolidButton from "../../common/primary-solid-button/PrimarySolidButton";
+import PrimaryTextButton from "../../common/primary-text-button/PrimaryTextButton";
 
 const items = [
   {
@@ -56,17 +56,7 @@ const items = [
   },
 ];
 
-const MyButton = styled(Button)(({ theme }) => ({
-  backgroundColor: "#b10b1c",
-  "&:hover": {
-    backgroundColor: "#b10b1cb3",
-  },
-}));
-const CardButton = styled(Button)(({ theme }) => ({
-  color: "#b10b1c",
-}));
-
-export default function UsersList() {
+export default function BusinessObjects() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -80,14 +70,14 @@ export default function UsersList() {
   return (
     <Box>
       <Box width="100%" display="flex" justifyContent="flex-end" mb={2}>
-        <MyButton
+        <PrimarySolidButton
           variant="contained"
           color="primary"
           sx={{ mr: 2 }}
           onClick={handleClickOpen}
         >
-          Create data source
-        </MyButton>
+          Create
+        </PrimarySolidButton>
 
         <Dialog
           open={open}
@@ -105,7 +95,7 @@ export default function UsersList() {
           }}
         >
           <DialogContent>
-            <CreateDataSource close={handleClose} />
+            <RequestDataProduct close={handleClose} />
           </DialogContent>
         </Dialog>
       </Box>
@@ -122,7 +112,7 @@ export default function UsersList() {
                   <Typography variant="body2">{item.description}</Typography>
                 </CardContent>
                 <CardActions>
-                  <CardButton size="small">See More</CardButton>
+                  <PrimaryTextButton size="small">See More</PrimaryTextButton>
                 </CardActions>
               </Card>
             </Grid>
